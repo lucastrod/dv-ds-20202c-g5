@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Editar Venta</title>
+</head>
+<body>
+	<div align="center">
+		<h1>Editar Venta</h1>
+		<br />
+		<table>
+			<tbody>
+				<tr>
+					<th><a href="/tienda">Volver al menú pricipal</a></th>
+					<th>&nbsp;</th>
+					<th><a href="/tienda/ventas/list">Volver</a></th>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<form action="#" th:action="@{/tienda/ventas/save}"
+			th:object="${venta}" method="post">
+			<table border="0" cellpadding="10">
+				<tr>
+					<td>Venta ID:</td>
+					<td><input type="text" th:field="*{id}" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+					<td>Tipo Venta:</td>
+					<td>
+					    <input id="tipoVenta" name="tipoVenta" type="text" th:value="${tipoVenta}" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+					<td>Cliente:</td>
+					<td>
+					    <select id="clienteId" name="clienteId">
+  					        <option value="">Seleccione el cliente</option>
+					        <option th:each="cliente : ${clientes}"
+					                th:value="${cliente.getId()}"
+					                th:text="${cliente.getRazonSocial()}"
+					                th:selected="${cliente.getId() == venta.getCliente().getId()}">
+					        </option>
+					    </select>
+					</td>
+				<tr>
+					<td colspan="2"><button type="submit">Grabar</button></td>
+				</tr>
+			</table>
+			<table>
+				<tbody>
+					<tr>
+						<th>Items</th>
+						<th>&nbsp;</th>						
+						<td><a th:href="@{'/tienda/ventas/items/' + ${venta.id}}">Nuevo Item</a>
+					</tr>
+					<tr>
+					
+				<tr>
+				</tbody>
+			</table>
+			<table>
+			    <thead>
+			        <tr>
+			            <th> Prenda </th>
+			            <th> Cantidad </th>
+			        </tr>
+			    </thead>
+			    <tbody>
+				<tr th:if="${items.empty}">
+			            <td colspan="2"> No hay items aún </td>
+			        </tr>
+			        <tr th:each="item : ${items}">
+			            <td><span th:text="${item.getPrenda().getDescripcion()}"> Prenda </span></td>
+			            <td><span th:text="${item.getCantidad()}"> Cantidad </span></td>
+			        </tr>
+			    </tbody>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
