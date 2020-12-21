@@ -21,11 +21,13 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -72,7 +74,7 @@ public abstract class Venta implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	
-	@OneToMany(mappedBy="venta", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, orphanRemoval = false)
+	@OneToMany(mappedBy="venta", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, orphanRemoval = false)
 	@JsonManagedReference
 	private List<Item> items;
 	
