@@ -38,15 +38,3 @@ VALUES
 -- Dumping data for table ventas
 --
 
-INSERT INTO ventas 
-(
-  tipo_venta,
-  vta_fecha,
-  vta_cli_id
-)
-VALUES
-('EFECTIVO', '2020-11-10', 1),
-('EFECTIVO', '2020-10-25', 3),
-('EFECTIVO', '2019-10-15', 3);
-
-
