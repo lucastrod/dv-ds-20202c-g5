@@ -152,7 +152,7 @@ public class VentaController extends TiendaApp {
 		mav.addObject("clienteId", 0);
 		List<Item> items = itemService.listAll();
 		List<Item> itemsAgregar = new ArrayList<Item>();
-		for(int i = 1; i < items.size(); i++) {
+		for(int i = 0; i < items.size(); i++) {
 			if(items.get(i).getVenta().getId() == ventaId) {
 				itemsAgregar.add(items.get(i));
 			}
@@ -175,7 +175,7 @@ public class VentaController extends TiendaApp {
 	}
 
 	@RequestMapping(value = "/ventas/delete/{id}", method = RequestMethod.GET)
-	public String deleteVenta(@PathVariable(name = "id") Long ventaId) {
+	public String deleteVenta(@PathVariable(name = "id") Long ventaId) throws Exception {
 		LOGGER.info("GET - deleteVenta - /ventas/delete/{id}");
 		LOGGER.info("venta: " + ventaId);
 		ventaService.delete(ventaId);
