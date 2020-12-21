@@ -54,7 +54,7 @@ public class Item implements Serializable{
 	@Column(name = "itm_cantidad")
 	private Integer cantidad;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="itm_vta_id", referencedColumnName="vta_id", nullable = false)
 	@JsonBackReference
 	private Venta venta;
