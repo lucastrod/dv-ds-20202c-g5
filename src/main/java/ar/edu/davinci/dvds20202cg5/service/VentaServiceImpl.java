@@ -92,6 +92,7 @@ public class VentaServiceImpl implements VentaService {
 					.cliente(cliente)
 					.fecha(Calendar.getInstance().getTime())
 					.items(items)
+					.id(venta.getId())
 					.build();
 			return ventaEfectivoRepository.save((VentaEfectivo)venta);
 		}
@@ -100,7 +101,8 @@ public class VentaServiceImpl implements VentaService {
 					.cliente(cliente)
 					.fecha(Calendar.getInstance().getTime())
 					.items(items)
-					.cantidadCuotas(((VentaTarjeta)venta).getCantidadCuotas())
+					.id(venta.getId())
+					.cantidadCuotas(1)
 					.coeficienteTarjeta(new BigDecimal(0.01D))
 					.build();
 			return ventaTarjetaRepository.save((VentaTarjeta)venta);
@@ -129,6 +131,7 @@ public class VentaServiceImpl implements VentaService {
 				.cliente(cliente)
 				.fecha(Calendar.getInstance().getTime())
 				.items(items)
+				.id(venta.getId())
 				.build();
 		
 		return ventaEfectivoRepository.save(venta);
@@ -160,7 +163,8 @@ public class VentaServiceImpl implements VentaService {
 				.cliente(cliente)
 				.fecha(Calendar.getInstance().getTime())
 				.items(items)
-				.cantidadCuotas(venta.getCantidadCuotas())
+				.id(venta.getId())
+				.cantidadCuotas(1)
 				.coeficienteTarjeta(new BigDecimal(0.01D))
 				.build();
 		return ventaTarjetaRepository.save(venta);
@@ -238,7 +242,7 @@ public class VentaServiceImpl implements VentaService {
 		itemService.delete(itemId);
 		
 		venta.getItems().remove(actualItem);
-		
+				
 		ventaRepository.save(venta);
 		
 		return venta;
@@ -301,4 +305,3 @@ public class VentaServiceImpl implements VentaService {
 	}
 
 }
-
