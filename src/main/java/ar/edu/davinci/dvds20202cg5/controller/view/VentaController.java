@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,7 +165,8 @@ public class VentaController extends TiendaApp {
 		if (ventaOptional.isPresent()) {
 			venta  = ventaOptional.get();
 			mav.addObject("venta", venta);
-		    if(venta.getClass().equals(VentaTarjeta.class)) {
+			Object ventaObject = Hibernate.unproxy(venta);
+		    if(ventaObject.getClass().equals(VentaTarjeta.class)) {
 				tipoVenta = "Tarjeta";
 			}
 		}
