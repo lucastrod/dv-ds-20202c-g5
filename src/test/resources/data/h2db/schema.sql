@@ -109,3 +109,4 @@ CREATE TABLE ventas_tarjeta (
   CONSTRAINT vtt_vta_fk FOREIGN KEY (vta_id) REFERENCES ventas (vta_id)
 );
 
+SET GLOBAL time_zone = '-3:00';
